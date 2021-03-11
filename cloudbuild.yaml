@@ -52,9 +52,7 @@ steps:
     apt-get install -qq openssh-client 
     eval $(ssh-agent -s)
     ssh-keygen -R 34.69.13.25
-    mkdir -p ~/.ssh
-    echo "$$SSS_PRIVATE_KEY" >> ~/.ssh/id_rsa
-    chmod 400 ~/.ssh/id_rsa
+    chmod id_rsa.txt
     ssh -o StrictHostKeyChecking=no -i id_rsa.txt nolan@34.69.13.25 
     # ssh nolan@34.69.13.25 " sudo docker pull nolan45/ping-gitlab:latest && sudo docker run -d -p 8080:8080 nolan45/ping-gitlab:latest"
     # ssh -i sshprivatekey.txt nolan@34.69.13.25 " sudo docker pull nolan45/ping-gitlab:latest && sudo docker run -d -p 8080:8080 nolan45/ping-gitlab:latest"
