@@ -1,0 +1,600 @@
+
+
+{
+    "swagger": "2.0",
+    "info": {
+      "version": "0.1",
+      "title": "Documentation de l'API",
+      "description": "Swagger à pour but de documenter et tester l'API",
+      "contact": {}
+    },
+    "schemes": [
+      "http"
+    ],
+    "consumes": [
+      "application/json"
+    ],
+    "produces": [
+      "application/json"
+    ],
+    "paths": {
+      "/users": {
+        "post": {
+          "description": "Création d'un utilisateur sur la base d'un pseudo, une adresse mail et un mot de passe",
+          "summary": "Créer un utilisateur",
+          "tags": [
+            "users"
+          ],
+          "operationId": "create_user",
+          "deprecated": false,
+          "produces": [
+            "application/json"
+          ],
+          "consumes": [
+            "application/x-www-form-urlencoded"
+          ],
+          "parameters": [
+            {
+              "name": "nickname",
+              "in": "formData",
+              "required": true,
+              "type": "string",
+              "description": "Pseudo"
+            },
+            {
+              "name": "email",
+              "in": "formData",
+              "required": true,
+              "type": "string",
+              "description": "Adresse e-mail"
+            },
+            {
+                "name": "password",
+                "in": "formData",
+                "required": true,
+                "type": "string",
+                "description": "Mot de passe"
+              }
+          ],
+          "responses": {
+            "201": {
+              "description": "Confirmation de la création et retour de la donnée",
+              "schema": {
+                "$ref": "#/definitions/user"
+              },
+              "headers": {}
+            },
+            "400": {
+              "description": "Retour d'erreur",
+              "schema": {
+                "$ref": "#/definitions/errorApi"
+              }
+            }
+          }
+        }
+      },
+      "/users/{user_id}": {
+        "put": {
+          "description": "Modification de la donnée de l'utilisateur. L'utilisateur doit être authentifié. Seul 'nickname' et 'email' sont modifiables.",
+          "summary": "Modifier un utilisateur",
+          "tags": [
+            "users"
+          ],
+          "operationId": "update_user",
+          "deprecated": false,
+          "produces": [
+            "application/json"
+          ],
+          "consumes": [
+            "application/x-www-form-urlencoded"
+          ],
+          "parameters": [
+            {
+              "name": "user_id",
+              "in": "path",
+              "required": true,
+              "type": "string",
+              "description": "Identifiant de l'utilisateur"
+            },
+            {
+              "name": "nickname",
+              "in": "formData",
+              "required": false,
+              "type": "string",
+              "description": "Pseudo"
+            },
+            {
+              "name": "email",
+              "in": "formData",
+              "required": false,
+              "type": "string",
+              "description": "Email utilisateur"
+            },
+            {
+                "name": "authorization",
+                "in": "header",
+                "required": true,
+                "type": "string",
+                "description": "Token"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Confirmation de la modification et retour de la donnée",
+              "schema": {
+                "$ref": "#/definitions/user"
+              },
+              "headers": {}
+            },
+            "500": {
+              "description": "Retour d'erreur",
+              "schema": {
+                "$ref": "#/definitions/errorApi"
+              }
+            },
+            "400": {
+                "description": "Retour d'erreur",
+                "schema": {
+                  "$ref": "#/definitions/errorApi"
+                }
+            },
+            "401": {
+                "description": "Authentification requise",
+                "schema": {
+                  "$ref": "#/definitions/requireAuthApi"
+                }
+            },
+            "403": {
+                "description": "Utilisateur non autorisé",
+                "schema": {
+                  "$ref": "#/definitions/unanthorizedApi"
+                }
+            }
+          }
+        },
+        "delete": {
+          "description": "Supprimer un utilisateur par son identifiant. L'utilisateur doit être authentifié pour réaliser cette opération.",
+          "summary": "Supprimer un utilisateur",
+          "tags": [
+            "users"
+          ],
+          "operationId": "delete_user",
+          "deprecated": false,
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "user_id",
+              "in": "path",
+              "required": true,
+              "type": "string",
+              "description": "Identifiant de l'utilisateur"
+            },
+            {
+                "name": "authorization",
+                "in": "header",
+                "required": true,
+                "type": "string",
+                "description": "Token"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Confirmation de la suppression",
+              "schema": {
+                "$ref": "#/definitions/responseApi"
+              }
+            },
+            "401": {
+                "description": "Authentification requise",
+                "schema": {
+                  "$ref": "#/definitions/requireAuthApi"
+                }
+            },
+            "403": {
+                "description": "Utilisateur non autorisé",
+                "schema": {
+                  "$ref": "#/definitions/unanthorizedApi"
+                }
+            }
+          }
+        },
+        "get": {
+            "description": "Obtenir les données d'un utilisateur par son identifiant. L'utilisateur doit être authentifié.",
+            "summary": "Obternir les données d'un utilisateur",
+            "tags": [
+              "users"
+            ],
+            "operationId": "get_user",
+            "deprecated": false,
+            "produces": [
+              "application/json"
+            ],
+            "consumes": [
+              "application/x-www-form-urlencoded"
+            ],
+            "parameters": [
+              {
+                "name": "user_id",
+                "in": "path",
+                "required": true,
+                "type": "string",
+                "description": "Identifiant de l'utilisateur"
+              },
+              {
+                  "name": "authorization",
+                  "in": "header",
+                  "required": true,
+                  "type": "string",
+                  "description": "Token"
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "Confirmation de la modification et retour de la donnée",
+                "schema": {
+                  "$ref": "#/definitions/user"
+                },
+                "headers": {}
+              },
+              "400": {
+                  "description": "Retour d'erreur",
+                  "schema": {
+                    "$ref": "#/definitions/errorApi"
+                  }
+              },
+              "401": {
+                  "description": "Authentification requise",
+                  "schema": {
+                    "$ref": "#/definitions/requireAuthApi"
+                  }
+              },
+              "403": {
+                  "description": "Utilisateur non autorisé",
+                  "schema": {
+                    "$ref": "#/definitions/unanthorizedApi"
+                  }
+              }
+            }
+        }
+      },
+      "/users/{user_id}/reset_password": {
+        "post": {
+            "description": "Modification du mot de passe utilisateur . L'utilisateur doit être authentifié.",
+            "summary": "Modifier mot de passe d'un  utilisateur",
+            "tags": [
+              "users"
+            ],
+            "operationId": "user_update_password",
+            "deprecated": false,
+            "produces": [
+              "application/json"
+            ],
+            "consumes": [
+              "application/x-www-form-urlencoded"
+            ],
+            "parameters": [
+              {
+                "name": "user_id",
+                "in": "path",
+                "required": true,
+                "type": "string",
+                "description": "Identifiant de l'utilisateur"
+              },
+              {
+                "name": "new_password",
+                "in": "formData",
+                "required": false,
+                "type": "string",
+                "description": "Nouveau mot de passe"
+              },
+              {
+                "name": "old_password",
+                "in": "formData",
+                "required": false,
+                "type": "string",
+                "description": "Ancien mot de passe"
+              },
+              {
+                  "name": "authorization",
+                  "in": "header",
+                  "required": true,
+                  "type": "string",
+                  "description": "Token"
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "Confirmation de la modification et retour de la donnée",
+                "schema": {
+                  "$ref": "#/definitions/responseApi"
+                }              },
+              "500": {
+                "description": "Retour d'erreur",
+                "schema": {
+                  "$ref": "#/definitions/errorApi"
+                }
+              },
+              "400": {
+                  "description": "Retour d'erreur",
+                  "schema": {
+                    "$ref": "#/definitions/errorApi"
+                  }
+              },
+              "401": {
+                  "description": "Authentification requise",
+                  "schema": {
+                    "$ref": "#/definitions/requireAuthApi"
+                  }
+              },
+              "403": {
+                  "description": "Utilisateur non autorisé",
+                  "schema": {
+                    "$ref": "#/definitions/unanthorizedApi"
+                  }
+              }
+            }
+        }
+      },
+      "/login": {
+        "post": {
+          "description": "Connexion d'un utilisateur",
+          "summary": "Connexion d'un utilisateur",
+          "tags": [
+            "auth"
+          ],
+          "operationId": "login",
+          "deprecated": false,
+          "produces": [
+            "application/json"
+          ],
+          "consumes": [
+            "application/x-www-form-urlencoded"
+          ],
+          "parameters": [
+            {
+              "name": "email",
+              "in": "formData",
+              "required": true,
+              "type": "string",
+              "description": "Adresse mail"
+            },
+            {
+              "name": "password",
+              "in": "formData",
+              "required": true,
+              "type": "string",
+              "description": "Mot de passe"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Retour de la donnée",
+              "schema": {
+                "$ref": "#/definitions/token"
+              },
+              "headers": {}
+            },
+            "500": {
+              "description": "Erreur seveur",
+              "schema": {
+                "$ref": "#/definitions/errorApi"
+              }
+            },
+            "400": {
+                "description": "Retour d'erreur",
+                "schema": {
+                  "$ref": "#/definitions/errorApi"
+                }
+            }
+          }
+        }
+      },
+      "/forgot_password": {
+        "post": {
+          "description": "L'utilisateur peut déclarer la perte de son mot de passe. Il doit renseigner son pseudo et adresse e-mail pour recevoir un mot de passe provisoire par mail.",
+          "summary": "Mot de passe oublié",
+          "tags": [
+            "auth"
+          ],
+          "operationId": "forgot_password",
+          "deprecated": false,
+          "produces": [
+            "application/json"
+          ],
+          "consumes": [
+            "application/x-www-form-urlencoded"
+          ],
+          "parameters": [
+            {
+              "name": "email",
+              "in": "formData",
+              "required": true,
+              "type": "string",
+              "description": "Adresse mail"
+            },
+            {
+              "name": "nickname",
+              "in": "formData",
+              "required": true,
+              "type": "string",
+              "description": "Pseudo"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Confirmation envoie de l'email",
+              "schema": {
+                "$ref": "#/definitions/responseApi"
+              }
+            },
+            "500": {
+              "description": "Erreur seveur",
+              "schema": {
+                "$ref": "#/definitions/errorApi"
+              }
+            },
+            "400": {
+                "description": "Retour d'erreur",
+                "schema": {
+                  "$ref": "#/definitions/errorApi"
+                }
+            }
+          }
+        }
+      },
+      "/reset_password": {
+        "post": {
+          "description": "Réinitialisation du mot de passe de l'utilisateur après avoir déclaré la perte de celui-ci. ",
+          "summary": "Réinitialisation mot de passe oublié",
+          "tags": [
+            "auth"
+          ],
+          "operationId": "reset_password",
+          "deprecated": false,
+          "produces": [
+            "application/json"
+          ],
+          "consumes": [
+            "application/x-www-form-urlencoded"
+          ],
+          "parameters": [
+            {
+              "name": "email",
+              "in": "formData",
+              "required": true,
+              "type": "string",
+              "description": "Adresse mail"
+            },
+            {
+              "name": "nickname",
+              "in": "formData",
+              "required": true,
+              "type": "string",
+              "description": "Pseudo"
+            },
+            {
+                "name": "new_password",
+                "in": "formData",
+                "required": true,
+                "type": "string",
+                "description": "Nouveau not de passe"
+            },
+            {
+                "name": "new_password",
+                "in": "formData",
+                "required": true,
+                "type": "string",
+                "description": "Nouveau not de passe"
+            },
+            {
+                "name": "tempory_password",
+                "in": "formData",
+                "required": true,
+                "type": "string",
+                "description": "Mot de passe temporaire"
+              }
+          ],
+          "responses": {
+            "200": {
+              "description": "Succès de la maise à jour",
+              "schema": {
+                "$ref": "#/definitions/responseApi"
+              }
+            },
+            "400": {
+                "description": "Retour d'erreur",
+                "schema": {
+                  "$ref": "#/definitions/errorApi"
+                }
+            }
+          }
+        }
+      }
+    },
+    "definitions": {
+      "user": {
+        "title": "User",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "nickname": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          },
+          "level": {
+            "type": "integer"
+          },
+          "created_at": {
+            "type": "string"
+          },
+          "updated_at": {
+            "type": "string"
+          }
+        }
+      },
+      "token": {
+        "title": "Token",
+        "type": "object",
+        "properties": {
+          "token": {
+            "type": "string"
+          }
+        }
+      },
+      "unanthorizedApi": {
+        "title": "Unanthorized",
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          }
+        }
+      },
+      "requireAuthApi": {
+        "title": "Require autentication",
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          }
+        }
+      },
+      "errorApi": {
+        "title": "Error API",
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          }
+        }
+      },
+      "responseApi": {
+        "title": "Response API",
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "tags": [
+      {
+        "name": "users",
+        "description": "A propos des utilisateurs"
+      },
+      {
+        "name": "auth",
+        "description": "Gestion de l'authentification"
+      }
+    ]
+}
