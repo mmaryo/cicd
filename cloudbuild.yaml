@@ -50,5 +50,5 @@ steps:
     mkdir -p ~/.ssh
     ssh nolan@34.69.13.25 " sudo docker pull nolan45/ping-gitlab:latest && sudo docker run -d -p 8080:8080 nolan45/ping-gitlab:latest"
 
-
+ 
 
