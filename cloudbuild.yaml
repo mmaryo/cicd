@@ -1,4 +1,4 @@
 steps:
 - name: maven:latest
   entrypoint: mvn
-  args: ["clean", "install"]
+  args: ["clean", "install", "-DskipTests"]
