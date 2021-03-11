@@ -14,12 +14,14 @@ steps:
   - |
     cd javascript
     npm test
+
 - name: node
   entrypoint: bash
-    - '-c'
-    - |
-      cd javascript
-      npm run build
+  args: 
+  - '-c'
+  - |
+    cd javascript
+    npm run
 - name: maven:latest
   entrypoint: mvn
   args: ["clean", "install", "-DskipTests"]
