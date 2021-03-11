@@ -29,14 +29,9 @@ steps:
   entrypoint: mvn
   args: ["test"]
 - name: 'gcr.io/cloud-builders/docker'
-  entrypoint: 'bash'
-  args: ['-c', 'docker login --username=$$docker-username --password=$$docker-password']
-  secretEnv: ['docker-username', 'docker-password']
-- name: 'gcr.io/cloud-builders/docker'
   args: [ 'build', '-t', 'gcr.io/nolan45/ping-gitlab', '-f', './Dockerfile', '.' ]
 - name: 'gcr.io/cloud-builders/docker'
   entrypoint: 'bash'
-  args: ['-c', 'docker login --username=$$docker-username --password=$$docker-password']
-  secretEnv: ['docker-username', 'docker-password']
+  args: ['-c', 'docker login --username=nolan45 --password=ace91ca3-2087-4657-ac4c-876154121828']
 
 
