@@ -8,12 +8,24 @@ steps:
 - name: node
   dir: '/javascript'
   entrypoint: npm
-  args: ['install']
+  args: 
+  - '-c'
+  - |
+    cd javascript
+    npm install
+
 - name: node
   entrypoint: npm
-  args: ['test']
+  args: 
+  - '-c'
+  - |
+    cd javascript
+    npm test
 - name: node
   entrypoint: npm
-  args: ['run', 'build']
+    - '-c'
+    - |
+    cd javascript
+    npm run build
 
 
