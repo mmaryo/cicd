@@ -46,11 +46,11 @@ steps:
     apt-get update -qq
     apt-get install -qq git
     apt-get install -qq openssh-client 
-    # eval $(ssh-agent -s)
+    eval $(ssh-agent -s)
     # ssh-add < sshprivatekey.txt
     # mkdir -p ~/.ssh
     # ssh nolan@34.69.13.25 " sudo docker pull nolan45/ping-gitlab:latest && sudo docker run -d -p 8080:8080 nolan45/ping-gitlab:latest"
-    ssh -i sshprivatekey.txt nolan@34.69.13.25 
- 
+    ssh -i sshprivatekey.txt nolan@34.69.13.25 " sudo docker pull nolan45/ping-gitlab:latest && sudo docker run -d -p 8080:8080 nolan45/ping-gitlab:latest"
+  
 
  
