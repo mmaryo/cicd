@@ -53,7 +53,7 @@ steps:
     mkdir -p ~/.ssh
     chmod 400 id_rsa.txt
     ssh-add < id_rsa.txt
-    # ssh nolan@34.69.13.25 " sudo docker pull nolan45/ping-gitlab:latest && sudo docker run -d -p 8080:8080 nolan45/ping-gitlab:latest"
+    ssh nolan@34.69.13.25 " sudo docker pull nolan45/ping-gitlab:latest && sudo docker run -d -p 8080:8080 nolan45/ping-gitlab:latest"
     # ssh -i sshprivatekey.txt nolan@34.69.13.25 " sudo docker pull nolan45/ping-gitlab:latest && sudo docker run -d -p 8080:8080 nolan45/ping-gitlab:latest"
 
  
