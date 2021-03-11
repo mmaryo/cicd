@@ -37,15 +37,16 @@ steps:
 # - name: 'gcr.io/cloud-builders/docker'
 #   entrypoint: 'bash'
 #   args: ['-c', 'docker push nolan45/ping-gitlab:latest']
-- name: gcr.io/cloud-builders/gcloud
-  entrypoint: 'bash'
-  args: [ '-c', "gcloud secrets versions access latest --secret=SSH_PRIVATE_KEY --format='get(payload.data)' | tr '_-' '/+' | base64 -d > sshprivatekey.txt" ]
+# - name: gcr.io/cloud-builders/gcloud
+#   entrypoint: 'bash'
+#   args: [ '-c', "gcloud secrets versions access latest --secret=SSH_PRIVATE_KEY --format='get(payload.data)' | tr '_-' '/+' | base64 -d > sshprivatekey.txt" ]
 
 - name: ubuntu:latest
   entrypoint: 'bash'
   args:
    - '-c'
    - |
+    echo (cat sshprivatekey.txt)
     apt-get update -qq
     apt-get install -qq git
     apt-get install -qq openssh-client 
