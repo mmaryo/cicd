@@ -1,0 +1,55 @@
+steps:
+# - name: node
+#   entrypoint: bash
+#   args: 
+#   - '-c'
+#   - |
+#     cd javascript
+#     npm install
+
+# - name: node
+#   entrypoint: bash
+#   args: 
+#   - '-c'
+#   - |
+#     cd javascript
+#     npm test
+
+# - name: node
+#   entrypoint: bash
+#   args: 
+#   - '-c'
+#   - |
+#     cd javascript
+#     npm run
+# - name: maven:latest
+#   entrypoint: mvn
+#   args: ["clean", "install", "-DskipTests"]
+# - name: maven:latest
+#   entrypoint: mvn
+#   args: ["test"]
+# - name: 'gcr.io/cloud-builders/docker'
+#   entrypoint: 'bash'
+#   args: ['-c', 'docker login --username=nolan45 --password=ace91ca3-2087-4657-ac4c-876154121828']
+# - name: 'gcr.io/cloud-builders/docker'
+#   entrypoint: 'bash'
+#   args: ['-c', 'docker build -t nolan45/ping-gitlab:latest .']
+# - name: 'gcr.io/cloud-builders/docker'
+#   entrypoint: 'bash'
+#   args: ['-c', 'docker push nolan45/ping-gitlab:latest']
+- name: ubuntu:latest
+  entrypoint: 'bash'
+  args:
+   - '-c'
+   - |
+    echo $$SSH_PRIVATE_KEY
+    # apt-get update -qq
+    # apt-get install -qq git
+    # apt-get install -qq openssh-client 
+    # eval $(ssh-agent -s)
+    # ssh-add <(echo "$$SSH_PRIVATE_KEY")
+    # mkdir -p ~/.ssh
+    # ssh nolan@34.69.13.25 " sudo docker pull nolan45/ping-gitlab:latest && sudo docker run -d -p 8080:8080 nolan45/ping-gitlab:latest"
+
+ 
+
