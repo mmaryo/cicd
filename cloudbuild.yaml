@@ -5,4 +5,17 @@ steps:
 - name: maven:latest
   entrypoint: mvn
   args: ["test"]
+- name: node:latest
+  entrypoint: mvn
+  args: ["test"]
+- name: node
+  entrypoint: npm
+  args: ['install']
+- name: node
+  entrypoint: npm
+  args: ['test']
+- name: node
+  entrypoint: npm
+  args: ['run', 'build']
+
 
