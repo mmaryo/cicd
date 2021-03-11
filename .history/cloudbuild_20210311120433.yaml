@@ -32,22 +32,8 @@ steps:
   entrypoint: 'bash'
   args: ['-c', 'docker login --username=nolan45 --password=ace91ca3-2087-4657-ac4c-876154121828']
 - name: 'gcr.io/cloud-builders/docker'
-  entrypoint: 'bash'
-  args: ['-c', 'docker build -t nolan45/ping-gitlab:latest .']
+  args: [ 'build', '-t', 'gcr.io/nolan45/ping-gitlab:latest', '-f', './Dockerfile', '.' ]
 - name: 'gcr.io/cloud-builders/docker'
-  entrypoint: 'bash'
-  args: ['-c', 'docker push nolan45/ping-gitlab:latest']
-- name: ubuntu:latest
-  entrypoint: 'bash'
-  args:
-   - '-c'
-   - |
-    apt-get update -qq
-    apt-get install -qq git
-    'which ssh-agent || ( apt-get install -qq openssh-client )'
-    eval $(ssh-agent -s)
-    ssh-add <(echo "$$SSH_PRIVATE_KEY")
-    mkdir -p ~/.ssh
-
+  args: [ 'push', 'gcr.io/nolan45/ping-gitlab:latest' ]
 
 
