@@ -5,7 +5,7 @@ steps:
   - '-c'
   - |
     ls
-    cd /javascript
+    cd javascript
     npm install
 
 - name: node
@@ -13,7 +13,7 @@ steps:
   args: 
   - '-c'
   - |
-    cd /javascript
+    cd javascript
     npm test
 - name: node
   entrypoint: bash
