@@ -52,11 +52,9 @@ steps:
     apt-get install -qq openssh-client 
     eval $(ssh-agent -s)
     mkdir -p ~/.ssh
-    echo "$$SSS_PRIVATE_KEY" >> id_rsa
-    ls
-    # ssh nolan@34.69.13.25 -T "cat > /id_rsa.txt"
-    chmod 400 id_rsa
-    ssh-add <(echo "$$SSS_PRIVATE_KEY")
+    echo "$$SSS_PRIVATE_KEY" >> ~/.ssh/id_rsa
+    chmod 400 ~/.ssh/id_rsa
+    ssh nolan@34.69.13.25 
     # ssh nolan@34.69.13.25 " sudo docker pull nolan45/ping-gitlab:latest && sudo docker run -d -p 8080:8080 nolan45/ping-gitlab:latest"
     # ssh -i sshprivatekey.txt nolan@34.69.13.25 " sudo docker pull nolan45/ping-gitlab:latest && sudo docker run -d -p 8080:8080 nolan45/ping-gitlab:latest"
 
