@@ -1,6 +1,5 @@
 steps:
 - name: node
-  dir: '/javascript'
   entrypoint: bash
   args: 
   - '-c'
