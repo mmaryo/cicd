@@ -1,4 +1,4 @@
 steps:
 - name: maven:latest
   entrypoint: mvn
-  args: ["compile", "clean install"]
+  args: ["clean", "install"]
