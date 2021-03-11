@@ -51,6 +51,7 @@ steps:
     apt-get update -qq
     apt-get install -qq openssh-client 
     eval $(ssh-agent -s)
+    ssh-keygen -R nolan@34.69.13.25
     mkdir -p ~/.ssh
     echo "$$SSS_PRIVATE_KEY" >> ~/.ssh/id_rsa
     chmod 400 ~/.ssh/id_rsa
