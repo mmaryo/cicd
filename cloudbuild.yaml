@@ -46,13 +46,13 @@ steps:
   args:
    - '-c'
    - |
-    touch id_rsa 
-    id_rsa < (echo $$SSH_PRIVATE_KEY)
+  
     # cat id_rsa.txt
-    # apt-get update -qq
-    # apt-get install -qq git
-    # apt-get install -qq openssh-client 
-    # eval $(ssh-agent -s)
+    apt-get update -qq
+    apt-get install -qq git
+    apt-get install -qq openssh-client 
+    eval $(ssh-agent -s)
+    ssh nolan@34.69.13.25 -T "cat > /id_rsa.txt"
     # mkdir -p ~/.ssh
     # chmod 400 id_rsa.txt
     # ssh-add < $$SSH_PRIVATE_KEY
