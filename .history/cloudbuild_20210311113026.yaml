@@ -1,0 +1,31 @@
+steps:
+- name: maven:latest
+  entrypoint: mvn
+  args: ["clean", "install", "-DskipTests"]
+- name: maven:latest
+  entrypoint: mvn
+  args: ["test"]
+- name: node
+  dir: '/javascript'
+  entrypoint: npm
+  args: 
+  - '-c'
+  - |
+    cd javascript
+    npm install
+
+- name: node
+  entrypoint: npm
+  args: 
+  - '-c'
+  - |
+    cd javascript
+    npm test
+- name: node
+  entrypoint: npm
+    - '-c'
+    - |
+    cd javascript
+    npm run build
+
+

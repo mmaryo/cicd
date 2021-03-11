@@ -28,8 +28,5 @@ steps:
 - name: maven:latest
   entrypoint: mvn
   args: ["test"]
-- name: 'gcr.io/cloud-builders/docker'
-  args: [ 'build', '-t', 'gcr.io/nolan45/ping-gitlab', '-f', './Dockerfile', '.' ]
-
 
 

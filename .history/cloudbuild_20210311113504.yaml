@@ -4,32 +4,28 @@ steps:
   args: 
   - '-c'
   - |
+    ls
     cd javascript
     npm install
 
 - name: node
-  entrypoint: bash
+  entrypoint: npm
   args: 
   - '-c'
   - |
     cd javascript
     npm test
-
 - name: node
-  entrypoint: bash
-  args: 
-  - '-c'
-  - |
+  entrypoint: npm
+    - '-c'
+    - |
     cd javascript
-    npm run
+    npm run build
 - name: maven:latest
   entrypoint: mvn
   args: ["clean", "install", "-DskipTests"]
 - name: maven:latest
   entrypoint: mvn
   args: ["test"]
-- name: 'gcr.io/cloud-builders/docker'
-  args: [ 'build', '-t', 'gcr.io/nolan45/ping-gitlab', '-f', './Dockerfile', '.' ]
-
 
 

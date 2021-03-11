@@ -1,0 +1,18 @@
+steps:
+- name: maven:latest
+  entrypoint: mvn
+  args: ["clean", "install", "-DskipTests"]
+- name: maven:latest
+  entrypoint: mvn
+  args: ["test"]
+- name: node
+  entrypoint: npm
+  args: ['install']
+- name: node
+  entrypoint: npm
+  args: ['test']
+- name: node
+  entrypoint: npm
+  args: ['run', 'build']
+
+

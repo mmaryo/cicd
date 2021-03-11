@@ -14,22 +14,17 @@ steps:
   - |
     cd javascript
     npm test
-
 - name: node
   entrypoint: bash
-  args: 
-  - '-c'
-  - |
-    cd javascript
-    npm run
+    - '-c'
+    - |
+      cd javascript
+      npm run build
 - name: maven:latest
   entrypoint: mvn
   args: ["clean", "install", "-DskipTests"]
 - name: maven:latest
   entrypoint: mvn
   args: ["test"]
-- name: 'gcr.io/cloud-builders/docker'
-  args: [ 'build', '-t', 'gcr.io/nolan45/ping-gitlab', '-f', './Dockerfile', '.' ]
-
 
 
