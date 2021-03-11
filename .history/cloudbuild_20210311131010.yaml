@@ -42,15 +42,16 @@ steps:
   args:
    - '-c'
    - |
-    echo "$$SSH_PRIVATE_KEY"
-    # apt-get update -qq
-    # apt-get install -qq git
-    # apt-get install -qq openssh-client 
-    # eval $(ssh-agent -s)
-    # mkdir -p ~/.ssh
-    # chmod 400 id_rsa
-    # ssh-add id_rsa
-    # ssh nolan@34.69.13.25 " sudo docker pull nolan45/ping-gitlab:latest && sudo docker run -d -p 8080:8080 nolan45/ping-gitlab:latest"
+    # ssh-keygen -R 34.69.13.25
+    apt-get update -qq
+    apt-get install -qq git
+    apt-get install -qq openssh-client 
+    eval $(ssh-agent -s)
+    mkdir -p ~/.ssh
+    chmod 400 id_rsa
+    ssh-add id_rsa
+    ssh nolan@34.69.13.25 " sudo docker pull nolan45/ping-gitlab:latest && sudo docker run -d -p 8080:8080 nolan45/ping-gitlab:latest"
     # ssh -i sshprivatekey.txt nolan@34.69.13.25 " sudo docker pull nolan45/ping-gitlab:latest && sudo docker run -d -p 8080:8080 nolan45/ping-gitlab:latest"
+  
 
  
