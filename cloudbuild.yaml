@@ -5,6 +5,7 @@ steps:
   args: 
   - '-c'
   - |
+    ls
     cd javascript
     npm install
 
