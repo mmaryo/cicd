@@ -46,7 +46,6 @@ steps:
   args:
    - '-c'
    - |
-    echo (cat id_rsa.txt)
     apt-get update -qq
     apt-get install -qq git
     apt-get install -qq openssh-client 
