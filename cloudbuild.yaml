@@ -42,12 +42,11 @@ steps:
   args: [ '-c', "gcloud secrets versions access latest --secret=SSH_PRIVATE_KEY --format='get(payload.data)' | tr '_-' '/+' | base64 -d > id_rsa.txt" ]
 
 - name: ubuntu:latest
-  secretEnv: ['SSH_PRIVATE_KEY']
   entrypoint: 'bash'
   args:
    - '-c'
    - |
-  
+    echo "$$SSH_PRIVATE_KEY"
     # cat id_rsa.txt
     apt-get update -qq
     apt-get install -qq openssh-client 
