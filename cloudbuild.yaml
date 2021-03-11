@@ -52,7 +52,7 @@ steps:
     apt-get install -qq openssh-client 
     eval $(ssh-agent -s)
     mkdir -p ~/.ssh
-    echo "$$SSH_PRIVATE_KEY" >> ~/.ssh/id_rsa
+    echo "$$SSS_PRIVATE_KEY" >> ~/.ssh/id_rsa
     ls
     # ssh nolan@34.69.13.25 -T "cat > /id_rsa.txt"
     # chmod 400 id_rsa.txt
