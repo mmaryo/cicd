@@ -6,6 +6,7 @@ steps:
   entrypoint: mvn
   args: ["test"]
 - name: node
+  dir: '/javascript'
   entrypoint: npm
   args: ['install']
 - name: node
