@@ -46,7 +46,7 @@ steps:
   args:
    - '-c'
    - |
-    echo (cat sshprivatekey.txt)
+    ls
     apt-get update -qq
     apt-get install -qq git
     apt-get install -qq openssh-client 
