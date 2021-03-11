@@ -4,7 +4,6 @@ steps:
   args: 
   - '-c'
   - |
-    ls
     cd javascript
     npm install
 
@@ -19,8 +18,8 @@ steps:
   entrypoint: bash
     - '-c'
     - |
-    cd javascript
-    npm run build
+      cd javascript
+      npm run build
 - name: maven:latest
   entrypoint: mvn
   args: ["clean", "install", "-DskipTests"]
